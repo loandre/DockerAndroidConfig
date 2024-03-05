@@ -8,6 +8,9 @@ ENV EMULATOR_DEVICE="Samsung Galaxy S10" \
 # Expor as portas necessárias
 EXPOSE 6080 9999
 
+# Instalar Maestro CLI
+RUN curl -Ls "https://get.maestro.mobile.dev" | bash
+
 # Adiciona o script start.sh ao contêiner
 COPY start.sh /usr/local/bin/start.sh
 
