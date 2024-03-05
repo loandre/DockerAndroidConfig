@@ -1,10 +1,13 @@
-1. entrar no diretorio que tem o dockerfile e dar permissao: 
-chmod +x start.sh
+Para construir e rodar a sua imagem Docker com suporte ao dispositivo KVM, você seguiria estes passos:
 
-2. Criar o build da imagem: 
-docker build -t android-maestro .
+1. **Construir a Imagem**:
+   ```
+   docker build -t minha-imagem-android .
+   ```
 
-3. Rodar a imagem criada: 
-docker run -d -p 6080:6080 -p 9999:9999 --device /dev/kvm --name android-container android-maestro
+2. **Rodar o Contêiner**:
+   ```
+   docker run -d -p 6080:6080 -p 9999:9999 -e EMULATOR_DEVICE="Samsung Galaxy S10" -e WEB_VNC=true --device /dev/kvm --name android-container minha-imagem-android
+   ```
 
-
+Lembre-se, este comando de execução assume que você está rodando em um host que tem o dispositivo `/dev/kvm` disponível e configurado corretamente para uso. Isso é geralmente verdadeiro em sistemas Linux com suporte a virtualização habilitado. Se você estiver usando Docker em uma plataforma diferente ou se houver problemas com a configuração do KVM, esses passos podem precisar de ajustes.
