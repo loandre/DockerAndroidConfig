@@ -14,13 +14,15 @@ RUN curl -Ls "https://get.maestro.mobile.dev" | bash && \
 
 # Comandos para iniciar o VNC e o Maestro Studio serão definidos em um script de inicialização
 # Este passo assume que você tem um script de inicialização, como 'start.sh', no mesmo diretório que o Dockerfile
-COPY start.sh /usr/local/bin/start.sh
-RUN chmod +x /usr/local/bin/start.sh
+# Ajuste aqui conforme a compatibilidade da sua versão do Docker:
+COPY --chmod=+x start.sh /usr/local/bin/start.sh
+# Se sua versão do Docker não suporta `--chmod=+x`, assegure-se que `start.sh` já tenha as permissões adequadas e use:
+# COPY start.sh /usr/local/bin/start.sh
 
 # Comando para configurar a localização do dispositivo. 704 Apps em Fortaleza Jacarecanga está aproximadamente na latitude -3.7237 e longitude -38.5282
 # Este comando será executado a cada início do container para garantir que a localização esteja correta.
 # O script start.sh deve incluir o comando abaixo antes de iniciar o emulador
 # adb emu geo fix -38.5282 -3.7237
 
-ENTRYPOINT ["start.sh"]
+ENTRYPOINT ["/usr/local/bin/start.sh"]
 
