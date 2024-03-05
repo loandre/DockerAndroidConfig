@@ -11,9 +11,9 @@ EXPOSE 6080 9999
 # Instalar Maestro CLI
 RUN curl -Ls "https://get.maestro.mobile.dev" | bash
 
-# Adiciona o script start.sh ao contêiner
-COPY start.sh /usr/local/bin/start.sh
+# Copia o script start.sh para o diretório de trabalho atual
+COPY start.sh .
 
 # Configura o contêiner para executar o start.sh quando iniciar
-CMD ["/usr/local/bin/start.sh"]
+CMD ["./start.sh"]
 
