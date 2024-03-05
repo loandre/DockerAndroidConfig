@@ -7,3 +7,4 @@ docker build -t android-maestro .
 3. Rodar a imagem criada: 
 docker run -d -p 6080:6080 -p 9999:9999 --device /dev/kvm --name android-container android-maestro
 
+
