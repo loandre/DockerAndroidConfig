@@ -3,7 +3,7 @@ appId: ""
 - waitForAnimationToEnd:
     timeout: 5000
 - tapOn: "{{tapOnValue}}"
-- tapOn: "Emil"
+- tapOn: "Email"
 - "eraseText"
 - inputText: "motorista@teste.com"
 - tapOn: "Password"

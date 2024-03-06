@@ -37,4 +37,3 @@ if grep -q "FAILED" "$LATEST_TEST_DIR/maestro.log"; then
 else
     echo "Teste concluído sem erros."
 fi
-

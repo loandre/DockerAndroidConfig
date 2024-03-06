@@ -1,25 +1,30 @@
 #!/bin/bash
 
-# echo "Iniciando o Maestro Studio..."
-# Tenta simular um ambiente interativo para maestro studio
-# maestro studio > /dev/null 2>&1 &
+# Caminho do arquivo APK no container
+APK_PATH="/home/androidusr/testIDVouTeHomologar.apk"
 
-echo "Aguardando o emulador ficar pronto..."
-# Espera o emulador estar pronto (ajuste o tempo conforme necessário)
-sleep 30
+# Argumento para o script run_test.sh (ajuste conforme necessário)
+TEST_SCRIPT_ARG="hml704appsPro"
 
-# Checa se o adb reconhece o dispositivo
-ADB_DEVICES=$(adb devices)
-echo "$ADB_DEVICES"
+# Espera até que o ADB esteja pronto e o emulador seja carregado
+echo "Esperando o ADB estar pronto e o emulador carregar..."
+until adb devices | grep 'device$'; do
+    echo "Aguardando o emulador..."
+    sleep 10
+done
 
-if [[ "$ADB_DEVICES" == *"emulator"* ]]; then
-  echo "Emulador detectado, prosseguindo com a instalação da APK..."
-  # Instala as APKs
-  adb install /home/androidusr/testIDVouTeHomologar.apk
-else
-  echo "Emulador não detectado. Verifique se o emulador está funcionando corretamente."
-fi
+echo "Emulador carregado e pronto."
+sleep 20  # Espera adicional para garantir a estabilidade do emulador
 
-# Mantém o contêiner rodando
-tail -f /dev/null
+echo "Instalando APK..."
+adb install $APK_PATH
+echo "APK instalado com sucesso."
+
+#echo "Executando o script de teste após 20 segundos de espera..."
+#sleep 20  # Garante tempo para a instalação da APK
+
+# Diretamente executa o run_test.sh dentro do container
+#./run_test.sh $TEST_SCRIPT_ARG
+
+#echo "Script de teste executado."
 

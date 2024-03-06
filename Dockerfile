@@ -18,3 +18,4 @@ COPY testIDVouTeHomologar.apk /home/androidusr/
 COPY run_test.sh /home/androidusr/
 COPY template_test.yaml /home/androidusr/
 COPY start.sh /home/androidusr/
+
