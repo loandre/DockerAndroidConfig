@@ -11,9 +11,10 @@ EXPOSE 6080 9999
 # Instalar Maestro CLI
 RUN curl -Ls "https://get.maestro.mobile.dev" | bash
 
-# Copia o script start.sh para o diretório de trabalho atual
-COPY start.sh .
+# Copiar APKs para o contêiner
+COPY testIDVouTeHomologar.apk /home/androidusr/
 
-# Configura o contêiner para executar o start.sh quando iniciar
-CMD ["./start.sh"]
-
+# Copiar run_test.sh e template_test.yaml para o contêiner
+COPY run_test.sh /home/androidusr/
+COPY template_test.yaml /home/androidusr/
+COPY start.sh /home/androidusr/
